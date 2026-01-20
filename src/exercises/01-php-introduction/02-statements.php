@@ -27,6 +27,20 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $age = rand(0,100);
+
+        if($age <=12) {
+            echo "<p>Age Group: Child</p>";
+        }
+        else if($age >=13 and $age <=19) {
+            echo "<p>Age Group: Teenager</p>";
+        }
+        else if($age >=20 and $age <=64) {
+            echo "<p>Age Group: Adult</p>";
+        }
+        else if($age >64) {
+            echo "<p>Age Group: Senior</p>";
+        }
         ?>
     </div>
 
@@ -43,6 +57,39 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        $day = rand(1, 7);
+        if ($day <=5) {
+        echo "<p>Weekday</p>";}
+
+        else if($day >5) {
+            echo "<p>Weekend</p>";
+        }
+        switch ($day) {
+            case (1):
+                echo "<p>Monday</p>";
+            break;
+            case (2):
+                echo "<p>Tuesday</p>";
+            break;
+            case (3):
+                echo "<p>Wednesday</p>";
+            break;
+            case (4):
+                echo "<p>Thursday</p>";
+            break;
+            case (5):
+                echo "<p>Friday</p>";
+            break;
+            case (6):
+                echo "<p>Saturday</p>";
+            break;
+            case (7):
+                echo "<p>Sunday</p>";
+            break;
+        }
+
+
         ?>
     </div>
 

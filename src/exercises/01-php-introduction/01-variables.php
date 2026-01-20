@@ -48,10 +48,28 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        ?>
-    </div>
 
-    <!-- Exercise 3 -->
+        $price1 = 5.99;
+        $quanitity1 = 2;
+
+        $price2 = 10;
+        $quanitity2 = 2;
+
+        $price3 = 8.50;
+        $quanitity3 = 4;
+
+        $total1 = $price1 * $quanitity1;
+        $total2 = $price2 * $quanitity2;
+        $total3 = $price3 * $quanitity3;
+
+        $totalCost = $total1 + $total2 + $total3;
+
+        echo $totalCost / 0.9;
+
+        ?>
+    </div>          
+
+    <!-- Exercise 3 -->         
     <h2>Exercise 3: User Status</h2>
     <p>
         <strong>Task:</strong> 
@@ -63,6 +81,15 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $isStudent = "true";
+        $hasDiscount = "false";
+        $isPremiumMember = "true";
+
+        echo "Student: " . ($isStudent ? "Yes" : "No") . "<br>";
+        echo "Discount: " . ($hasDiscount ? "No" : "Yes") . "<br>";
+        echo "PremiumMember: " . ($isPremiumMember ? "Yes" : "No");
+
+
         ?>
     </div>
 
