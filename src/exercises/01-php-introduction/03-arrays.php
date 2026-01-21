@@ -26,7 +26,19 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        // TODO: Write your solution here                                                                                                       
+        $movies = [
+            "Rio",
+            "Labyrinth",
+            "Spiderman",
+            "Casper",
+            "Zathura"
+        ];
+
+        for ($i = 0; $i != count($movies); $i++) {
+            echo "Movie " . ($i+1) . ": " . $movies[$i] . "<br/>";
+        }
+        
         ?>
     </div>
 
@@ -42,6 +54,19 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+    $student = [
+    "name" => "Eshi Ulzii",
+    "studentId" => "n00253795",
+    "course" => "Creative Computing",
+    "grade" => "A"
+    ];
+
+    $text =
+    "{$student['name']} (Student ID: {$student['studentId']}) " .
+    "is enrolled in {$student['course']} and earned a grade of {$student['grade']}.";
+
+    print("<p>$text</p>");
+
         ?>
     </div>
 

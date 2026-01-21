@@ -105,6 +105,16 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+        
+        $number = 5;
+        echo "<p>Multiplication table for $number:</p>";
+    for ($i = 1; $i <= 10; $i++) {
+        $result = $number * $i;
+        echo "<p>$number × $i = $result</p>";
+    }
+
+
         ?>
     </div>
 
@@ -120,6 +130,16 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        
+        $countdown = 10;
+        while ($countdown > 0) {
+            echo "<p>$countdown</p>";
+            $countdown = $countdown - 1;
+        }
+
+echo "<p>0</p>";
+echo "<p>Blast off!</p>";
+
         ?>
     </div>
 
