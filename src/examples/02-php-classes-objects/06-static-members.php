@@ -241,6 +241,116 @@ foreach (BankAccount::findAll() as $account) {
         ?>
     </div>
 
+    <!-- Example 5 -->
+    <h2>Removing Objects from the Registry</h2>
+    <p>When objects are destroyed (e.g., using <code>unset()</code>), they should be removed from the registry. We can use the <code>__destruct()</code> magic method to automatically clean up.</p>
+    <pre><code class="language-php">class BankAccount {
+    private static $accounts = [];
+
+    protected $number;
+    protected $name;
+    protected $balance;
+
+    public function __construct($num, $name, $bal) {
+        $this->number = $num;
+        $this->name = $name;
+        $this->balance = $bal;
+
+        // Add to registry
+        self::$accounts[$num] = $this;
+        echo "Opened account for {$this->name}&lt;br&gt;";
+    }
+
+    public function __destruct() {
+        // Remove from registry when destroyed
+        unset(self::$accounts[$this->number]);
+        echo "Closed account for {$this->name}&lt;br&gt;";
+    }
+
+    public static function findAll() {
+        return self::$accounts;
+    }
+
+    public static function count() {
+        return count(self::$accounts);
+    }
+
+    public function __toString() {
+        return "Account {$this->number}: {$this->name}, &amp;euro;{$this->balance}";
+    }
+}
+
+// Create accounts
+$acc1 = new BankAccount("111", "Alice", 100);
+$acc2 = new BankAccount("222", "Bob", 200);
+$acc3 = new BankAccount("333", "Charlie", 300);
+
+echo "&lt;br&gt;Accounts in registry: " . BankAccount::count() . "&lt;br&gt;&lt;br&gt;";
+
+// Close one account
+echo "Closing Bob's account...&lt;br&gt;";
+unset($acc2);
+
+echo "&lt;br&gt;Accounts remaining: " . BankAccount::count() . "&lt;br&gt;";
+foreach (BankAccount::findAll() as $account) {
+    echo $account . "&lt;br&gt;";
+}</code></pre>
+
+    <p class="output-label">Output:</p>
+    <div class="output">
+        <?php
+        class BankAccountWithDestruct {
+            private static $accounts = [];
+
+            protected $number;
+            protected $name;
+            protected $balance;
+
+            public function __construct($num, $name, $bal) {
+                $this->number = $num;
+                $this->name = $name;
+                $this->balance = $bal;
+
+                self::$accounts[$num] = $this;
+                echo "Opened account for {$this->name}<br>";
+            }
+
+            public function __destruct() {
+                unset(self::$accounts[$this->number]);
+                echo "Closed account for {$this->name}<br>";
+            }
+
+            public static function findAll() {
+                return self::$accounts;
+            }
+
+            public static function count() {
+                return count(self::$accounts);
+            }
+
+            public function __toString() {
+                return "Account {$this->number}: {$this->name}, &euro;{$this->balance}";
+            }
+        }
+
+        $acc1 = new BankAccountWithDestruct("111", "Alice", 100);
+        $acc2 = new BankAccountWithDestruct("222", "Bob", 200);
+        $acc3 = new BankAccountWithDestruct("333", "Charlie", 300);
+
+        echo "<br>Accounts in registry: " . BankAccountWithDestruct::count() . "<br><br>";
+
+        echo "Closing Bob's account...<br>";
+        unset($acc2);
+
+        echo "<br>Accounts remaining: " . BankAccountWithDestruct::count() . "<br>";
+        foreach (BankAccountWithDestruct::findAll() as $account) {
+            echo $account . "<br>";
+        }
+        ?>
+    </div>
+
+    <p><strong>Note:</strong> The remaining accounts will also be closed at the end of the script when PHP automatically destroys all remaining objects.</p>
+
     <!-- Summary -->
     <h2>self:: vs $this</h2>
     <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">

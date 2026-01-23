@@ -88,5 +88,26 @@
         ?>
     </div>
 
+    <!-- Exercise 4 -->
+    <h2>Exercise 4: Removing from Registry with __destruct()</h2>
+    <p>
+        <strong>Task:</strong>
+        Modify the <code>__destruct()</code> method your <code>Student</code> class so that
+        it removes the student from the static <code>$students</code> array using 
+        <code>unset(self::$students[$this->number])</code>
+    </p>
+    <p>
+        Create three students, display the count, then use <code>unset()</code> to destroy
+        one of them. Display the count again to confirm the student was removed from the registry.
+    </p>
+
+    <p class="output-label">Output:</p>
+    <div class="output">
+        <?php
+        // TODO: Write your solution here
+        // require_once __DIR__ . '/classes/Student.php';
+        ?>
+    </div>
+
 </body>
 </html>
