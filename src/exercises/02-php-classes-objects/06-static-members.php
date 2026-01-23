@@ -52,6 +52,11 @@
         <li>A public static method <code>findAll()</code> that returns the <code>$students</code> array</li>
         <li>A public static method <code>findByNumber($num)</code> that returns the student with that number, or null if not found</li>
     </ul>
+    <p>
+        Create three students and then use <code>Student::findAll()</code> to display
+        all students. Use <code>Student::findByNumber()</code> to find a specific
+        student by their number and display that student.
+    </p>
 
     <p class="output-label">Output:</p>
     <div class="output">
