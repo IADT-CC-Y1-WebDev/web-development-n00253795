@@ -207,41 +207,6 @@ echo $found;</code></pre>
     </div>
 
     <!-- Example 4 -->
-    <h2>Using the v3 Classes</h2>
-    <p>The v3 folder contains <code>BankAccount</code> with static members for tracking all accounts.</p>
-    <pre><code class="language-php">require_once __DIR__ . '/classes/v3/SavingsAccount.php';
-require_once __DIR__ . '/classes/v3/CurrentAccount.php';
-
-// Create different account types
-$savings = new SavingsAccount("S001", "Diana", 1000, 0.05);
-$current = new CurrentAccount("C001", "Eve", 500);
-$basic = new BankAccount("B001", "Frank", 250);
-
-// All accounts are tracked in the parent class's static array
-echo "&lt;strong&gt;All accounts (via BankAccount::findAll()):&lt;/strong&gt;&lt;br&gt;";
-foreach (BankAccount::findAll() as $account) {
-    echo $account . "&lt;br&gt;";
-}</code></pre>
-
-    <p class="output-label">Output:</p>
-    <div class="output">
-        <?php
-        require_once __DIR__ . '/classes/v3/SavingsAccount.php';
-        require_once __DIR__ . '/classes/v3/CurrentAccount.php';
-
-        // Use v3 namespace by referencing the included classes
-        $savings = new \SavingsAccount("S001", "Diana", 1000, 0.05);
-        $current = new \CurrentAccount("C001", "Eve", 500);
-        $basic = new \BankAccount("B001", "Frank", 250);
-
-        echo "<strong>All accounts (via BankAccount::findAll()):</strong><br>";
-        foreach (\BankAccount::findAll() as $account) {
-            echo $account . "<br>";
-        }
-        ?>
-    </div>
-
-    <!-- Example 5 -->
     <h2>Removing Objects from the Registry</h2>
     <p>
         When an object is destroyed, we should remove it from the registry to keep it accurate. 
@@ -391,6 +356,41 @@ foreach (BankAccount::findAll() as $account) {
     </div>
 
     <p><strong>Why do we need close()?</strong> PHP only calls <code>__destruct()</code> when <em>all</em> references to an object are gone. Since the static array holds a reference, we must remove it from the array first. Then <code>unset()</code> removes the last reference and triggers <code>__destruct()</code>.</p>
+
+        <!-- Example 5 -->
+    <h2>Using the v3 Classes</h2>
+    <p>The v3 folder contains <code>BankAccount</code> with static members for tracking all accounts.</p>
+    <pre><code class="language-php">require_once __DIR__ . '/classes/v3/SavingsAccount.php';
+require_once __DIR__ . '/classes/v3/CurrentAccount.php';
+
+// Create different account types
+$savings = new SavingsAccount("S001", "Diana", 1000, 0.05);
+$current = new CurrentAccount("C001", "Eve", 500);
+$basic = new BankAccount("B001", "Frank", 250);
+
+// All accounts are tracked in the parent class's static array
+echo "&lt;strong&gt;All accounts (via BankAccount::findAll()):&lt;/strong&gt;&lt;br&gt;";
+foreach (BankAccount::findAll() as $account) {
+    echo $account . "&lt;br&gt;";
+}</code></pre>
+
+    <p class="output-label">Output:</p>
+    <div class="output">
+        <?php
+        require_once __DIR__ . '/classes/v3/SavingsAccount.php';
+        require_once __DIR__ . '/classes/v3/CurrentAccount.php';
+
+        // Use v3 namespace by referencing the included classes
+        $savings = new \SavingsAccount("S001", "Diana", 1000, 0.05);
+        $current = new \CurrentAccount("C001", "Eve", 500);
+        $basic = new \BankAccount("B001", "Frank", 250);
+
+        echo "<strong>All accounts (via BankAccount::findAll()):</strong><br>";
+        foreach (\BankAccount::findAll() as $account) {
+            echo $account . "<br>";
+        }
+        ?>
+    </div>
 
     <!-- Summary -->
     <h2>self:: vs $this</h2>
