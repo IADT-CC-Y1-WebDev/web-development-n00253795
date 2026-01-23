@@ -66,7 +66,7 @@ If you prefer to run the commands manually:
 
 ```bash
 git fetch upstream
-git merge upstream/main -m "Update examples from instructor"
+git merge upstream/main --allow-unrelated-histories -m "Update examples from instructor"
 ```
 
 | Command | What it does |
