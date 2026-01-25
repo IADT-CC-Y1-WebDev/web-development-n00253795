@@ -25,6 +25,19 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        function celsiusToFahrenheit($celsius) {
+            $fahrenheit = ($celsius * 9/5) + 32;
+            return $fahrenheit;
+}
+
+    $temp1 = 0;
+    $temp2 = 25;
+    $temp3 = 100;
+
+        echo "<p>$temp1 °C is " . celsiusToFahrenheit($temp1) . "°F.</p>";
+        echo "<p>$temp2 °C is " . celsiusToFahrenheit($temp2) . "°F.</p>";
+        echo "<p>$temp3 °C is " . celsiusToFahrenheit($temp3) . "°F.</p>";
+
         ?>
     </div>
 
@@ -41,6 +54,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        function calculateRectangleArea($width, $height = null) {
+
+    if ($height === null) {
+        $height = $width;
+    }
+    $area = $width * $height;
+    return $area;
+}
+    echo "<p>Rectangle 5 x 10: Area = " . calculateRectangleArea(5, 10) . "</p>";
+    echo "<p>Square 7 x 7: Area = " . calculateRectangleArea(7) . "</p>";
+    echo "<p>Rectangle 8 x 3: Area = " . calculateRectangleArea(8, 3) . "</p>";
+
         ?>
     </div>
 
@@ -57,6 +82,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        function checkEvenOdd($number) {
+    if ($number % 2 === 0) {
+        return "Even";
+    } else {
+        return "Odd";
+    }
+}
+
+    echo "<p>Number 4 is " . checkEvenOdd(4) . ".</p>";
+    echo "<p>Number 7 is " . checkEvenOdd(7) . ".</p>";
+    echo "<p>Number 0 is " . checkEvenOdd(0) . ".</p>";
+    echo "<p>Number -3 is " . checkEvenOdd(-3) . ".</p>";
         ?>
     </div>
 
@@ -73,6 +110,23 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+    function getArrayStats($numbers) {
+    $min = min($numbers);
+    $max = max($numbers);
+    
+    $average = array_sum($numbers) / count($numbers);
+    
+    return [$min, $max, $average];
+}
+
+    $nums = [4, 8, 15, 16, 23, 42];
+    [$min, $max, $avg] = getArrayStats($nums);
+
+    echo "<p>Numbers: " . implode(", ", $nums) . "</p>";
+    echo "<p>Minimum: $min</p>";
+    echo "<p>Maximum: $max</p>";
+    echo "<p>Average: $avg</p>";
+
         ?>
     </div>
 

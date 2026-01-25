@@ -27,6 +27,11 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        echo "<h2>Server Information</h2>";
+        echo "<p><strong>PHP_SELF:</strong> " . $_SERVER['PHP_SELF'] . "</p>";
+        echo "<p><strong>REQUEST_METHOD:</strong> " . $_SERVER['REQUEST_METHOD'] . "</p>";
+        echo "<p><strong>HTTP_HOST:</strong> " . $_SERVER['HTTP_HOST'] . "</p>";
+        echo "<p><strong>HTTP_USER_AGENT:</strong> " . $_SERVER['HTTP_USER_AGENT'] . "</p>";
         
         ?>
     </div>
@@ -44,6 +49,13 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+    if (isset($_GET['name']) && !empty($_GET['name'])) {
+        $name = htmlspecialchars($_GET['name']); // sanitize input
+        echo "<p>Hello, $name!</p>";
+    } else {
+        echo "<p>Hello, Guest!</p>";
+    }
+
         ?>
     </div>
 
@@ -61,6 +73,31 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+if (isset($_GET['product']) && isset($_GET['quantity'])) {
+    
+    $product = htmlspecialchars($_GET['product']);
+    $quantity = htmlspecialchars($_GET['quantity']);
+    
+
+    if (!empty($product) && !empty($quantity)) {
+        echo "<p>You ordered $quantity $product(s).</p>";
+    } else {
+        if (empty($product)) {
+            echo "<p>Error: Product is missing.</p>";
+        }
+        if (empty($quantity)) {
+            echo "<p>Error: Quantity is missing.</p>";
+        }
+    }
+    
+} else {
+    if (!isset($_GET['product'])) {
+        echo "<p>Error: Product parameter is not set.</p>";
+    }
+    if (!isset($_GET['quantity'])) {
+        echo "<p>Error: Quantity parameter is not set.</p>";
+    }
+}
         ?>
     </div>
 

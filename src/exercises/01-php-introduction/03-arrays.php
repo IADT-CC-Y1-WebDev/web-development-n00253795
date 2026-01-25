@@ -83,6 +83,17 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $countries = [
+            "France" => "Paris",
+            "Japan" => "Tokyo",
+            "Canada" => "Ottawa",
+            "Brazil" => "Brasília",
+            "Australia" => "Canberra"
+ ];
+
+foreach ($countries as $country => $capital) {
+    print("<p>The capital of {$country} is {$capital}.</p>");
+}
         ?>
     </div>
 
@@ -100,6 +111,34 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+    $menu = [
+        "Starters" => [
+        "Garlic Bread" => 5.99,
+        "Caesar Salad" => 7.49,
+        "Tomato Soup" => 4.99
+    ],
+    "Main Course" => [
+        "Grilled Salmon" => 15.99,
+        "Ribeye Steak" => 22.50,
+        "Vegetable Pasta" => 13.25
+    ]
+];
+
+echo "<p>Restaurant Menu</p>";
+
+    foreach ($menu as $category => $items) {
+        echo "<p>$category</p>";
+        echo "<ul>";
+    
+    foreach ($items as $item => $price) {
+        echo "<li>$item - $" . number_format($price, 2) . "</li>";
+    }
+    
+    echo "</ul>";
+}
+
+
+
         ?>
     </div>
 
