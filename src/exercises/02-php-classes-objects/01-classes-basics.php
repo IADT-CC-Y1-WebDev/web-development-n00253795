@@ -35,6 +35,21 @@
         // Step 2: Require the file
         // require_once __DIR__ . '/classes/Student.php';
         // Step 3: Create a student and display their details
+
+
+        require_once __DIR__ . '/classes/Student.php';
+
+        // $alice = new Student();
+
+        //set properties
+        // $alice->name = "Alice";
+        // $alice->number = "4097895";
+
+        // Access properties
+        // echo "Name: " . $alice->name;
+        // echo ", Number: " . $alice->number;
+        echo "See solution in code";
+
         ?>
     </div>
 
@@ -55,6 +70,17 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Student.php';
+
+        // $wendy = new Student("4567879", "Wendy");
+        // $paul = new Student("4123449", "Paul");
+
+        // echo "Name: " . $wendy->name;
+        // echo ", Number: " . $wendy->number;
+
+        // echo "  Name: " . $paul->name;
+        // echo ", Number: " . $paul->number;
+        echo "See solution in code";
+
         ?>
     </div>
 
@@ -73,8 +99,13 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
+        $wendy = new Student("4567879", "Wendy");
+        
+        // Access via getter methods (allowed)
+        echo "Name: " . $wendy->getName() . "<br>";
+        echo "Number: " . $wendy->getNumber() . "<br>";
+
         ?>
     </div>
 

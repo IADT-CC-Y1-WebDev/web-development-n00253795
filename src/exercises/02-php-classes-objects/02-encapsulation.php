@@ -34,7 +34,14 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
+
+        $wendy = new Student("4567879", "Wendy");
+        
+        // Access via getter methods (allowed)
+        // echo "Name: " . $wendy->name . "<br>";
+        // echo "Number: " . $wendy->number . "<br>";
+        echo "See solution in code";
         ?>
     </div>
 
@@ -55,7 +62,11 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
+        $wendy = new Student("4567879", "Wendy");
+
+        echo "Name: " . $wendy->getName() . "<br>";
+        echo "Number: " . $wendy->getNumber() . "<br>";
         ?>
     </div>
 
