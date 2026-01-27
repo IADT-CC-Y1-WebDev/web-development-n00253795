@@ -34,10 +34,8 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        require_once __DIR__ . '/classes/Student.php';
-
-        $wendy = new Student("4567879", "Wendy");
-        
+        // require_once __DIR__ . '/classes/Student.php';
+        // $wendy = new Student("4567879", "Wendy");
         // Access via getter methods (allowed)
         // echo "Name: " . $wendy->name . "<br>";
         // echo "Number: " . $wendy->number . "<br>";
@@ -62,12 +60,12 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        require_once __DIR__ . '/classes/Student.php';
-        $wendy = new Student("4567879", "Wendy");
-
-        echo "Name: " . $wendy->getName() . "<br>";
-        echo "Number: " . $wendy->getNumber() . "<br>";
-        ?>
+        // require_once __DIR__ . '/classes/Student.php';
+        // $wendy = new Student("4567879", "Wendy");
+        // echo "Name: " . $wendy->getName() . "<br>";
+        // echo "Number: " . $wendy->getNumber() . "<br>";
+        echo "See solution in code";
+         ?>
     </div>
 
     <!-- Exercise 3 -->
@@ -87,12 +85,37 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
-        // try {
-        //     $student = new Student("Alice", "");
-        // } catch (Exception $e) {
-        //     echo "Error: " . $e->getMessage();
-        // }
+    require_once __DIR__ . '/classes/Student.php';
+    
+    class Student {
+    private $studentNumber;
+    private $name;
+
+    public function __construct($studentNumber, $name) {
+        if (empty($studentNumber)) {
+            throw new Exception("Student number cannot be empty");
+        }
+
+        $this->studentNumber = $studentNumber;
+        $this->name = $name;
+    }
+
+    public function getStudentNumber() {
+        return $this->studentNumber;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+}
+
+// Test with try/catch
+try {
+    $student = new Student("", "Alice");  // Empty student number
+} catch (Exception $e) {
+    echo "Exception caught: " . $e->getMessage();
+}
+
         ?>
     </div>
 

@@ -22,7 +22,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        
+
+// Include navigation at the top
+require 'inc/navigation.php';
+
+echo "<p>This is the main page content.</p>";
+
+// Include navigation again at the bottom
+require 'inc/navigation.php';
+
+
+
+
         ?>
     </div>
 
@@ -34,6 +45,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        require_once 'lib/utilities.php';
+
+// Test truncate
+$text = "This is a very long sentence that needs to be shortened.";
+echo "<p>Truncated: " . truncate($text, 25) . "</p>";
+
+// Test formatPrice
+echo "<p>Formatted Price: " . formatPrice(49.9) . "</p>";
+
+// Test getCurrentYear
+echo "<p>Current Year: " . getCurrentYear() . "</p>";
+
         ?>
     </div>
 
@@ -45,6 +68,20 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        require_once 'lib/validators.php';
+require_once 'lib/formatters.php';
+
+// Test email validation
+$email = "test@example.com";
+if (isValidEmail($email)) {
+    echo "<p>Email '$email' is valid.</p>";
+} else {
+    echo "<p>Email '$email' is invalid.</p>";
+}
+
+// Test phone formatting
+$phone = "1234567890";
+echo "<p>Formatted Phone: " . formatPhoneNumber($phone) . "</p>";
         ?>
     </div>
 
