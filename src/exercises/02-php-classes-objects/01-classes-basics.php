@@ -39,16 +39,16 @@
 
         require_once __DIR__ . '/classes/Student.php';
 
-        // $alice = new Student();
+        $alice = new Student("Alice", "4097895");
 
         //set properties
         // $alice->name = "Alice";
         // $alice->number = "4097895";
 
         // Access properties
-        // echo "Name: " . $alice->name;
-        // echo ", Number: " . $alice->number;
-        echo "See solution in code";
+        echo "Name: " . $alice->getName();
+        echo ", Number: " . $alice->getNumber();
+        // echo "See solution in code";
 
         ?>
     </div>
@@ -69,17 +69,17 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
 
-        // $wendy = new Student("4567879", "Wendy");
-        // $paul = new Student("4123449", "Paul");
+        $wendy = new Student("4567879", "Wendy");
+        $paul = new Student("4123449", "Paul");
 
-        // echo "Name: " . $wendy->name;
-        // echo ", Number: " . $wendy->number;
+        echo "Name: " . $wendy->getName();
+        echo ", Number: " . $wendy->getNumber();
 
-        // echo "  Name: " . $paul->name;
-        // echo ", Number: " . $paul->number;
-        echo "See solution in code";
+        echo "  Name: " . $paul->getName();
+        echo ", Number: " . $paul->getNumber();
+        // echo "See solution in code";
 
         ?>
     </div>
