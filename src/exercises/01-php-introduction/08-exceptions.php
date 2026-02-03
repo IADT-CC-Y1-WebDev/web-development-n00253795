@@ -28,6 +28,27 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+function calculateSquareRoot($number) {
+    if ($number < 0) {
+        throw new Exception("Cannot calculate square root of a negative number");
+    }
+    return sqrt($number);
+}
+
+$testNumbers = [16, 25, -9];
+
+foreach ($testNumbers as $num) {
+    try {
+        $result = calculateSquareRoot($num);
+        echo "Square root of $num is $result<br>";
+    } 
+    catch (Exception $e) {
+        echo "Error for $num: " . $e->getMessage() . "<br>";
+    }
+}
+
+
         ?>
     </div>
 
@@ -45,6 +66,27 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+
+function validateEmail($email) {
+    if (strpos($email, "@") === false) {
+        throw new Exception("Invalid email: missing @ symbol");
+    }
+    return "Valid email: $email";
+}
+
+$testEmails = ["user@example.com", "invalid-email", "test@test.ie"];
+
+foreach ($testEmails as $email) {
+    try {
+        $result = validateEmail($email);
+        echo "$result<br>";
+    } 
+    catch (Exception $e) {
+        echo "Error for $email: " . $e->getMessage() . "<br>";
+    }
+}
+
+
         ?>
     </div>
 
@@ -60,7 +102,30 @@
     <p class="output-label">Output:</p>
     <div class="output">
         <?php
-        // TODO: Write your solution here
+        // TODO: Write your solution here#
+
+function processFile($filename) {
+    if (empty($filename)) {
+        throw new Exception("Filename cannot be empty");
+    }
+    return "Processing file: $filename";
+}
+
+$testFiles = ["data.txt", ""];
+
+foreach ($testFiles as $file) {
+    try {
+        echo processFile($file) . "<br>";
+    } 
+    catch (Exception $e) {
+        echo "Error: " . $e->getMessage() . "<br>";
+    } 
+    finally {
+        echo "Processing complete<br><br>";
+    }
+}
+
+
         ?>
     </div>
 

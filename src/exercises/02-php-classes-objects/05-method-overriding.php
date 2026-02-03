@@ -32,7 +32,17 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
+
+
+require_once __DIR__ . '/classes/Student.php';
+require_once __DIR__ . '/classes/Undergrad.php';
+
+$student = new Student("Alice", "S100001");
+$undergrad = new Undergrad("Bob", "S200002", "Computer Science", 2);
+
+echo $student . "<br>";
+echo $undergrad;
+
         ?>
     </div>
 
@@ -60,7 +70,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Postgrad.php';
+
+require_once __DIR__ . '/classes/Postgrad.php';
+
+$postgrad = new Postgrad(
+    "Clara",
+    "P300003",
+    "Dr. Smith",
+    "Machine Learning"
+);
+
+echo $postgrad;
+
         ?>
     </div>
 
@@ -79,6 +100,21 @@
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Undergrad.php';
         // require_once __DIR__ . '/classes/Postgrad.php';
+
+require_once __DIR__ . '/classes/Student.php';
+require_once __DIR__ . '/classes/Undergrad.php';
+require_once __DIR__ . '/classes/Postgrad.php';
+
+$students = [
+    new Student("S100001", "Alice"),
+    new Undergrad("Bob", "S200002", "Computer Science", 2),
+    new Postgrad("Clara", "P300003", "Dr. Smith", "Machine Learning")
+];
+
+foreach ($students as $student) {
+    echo $student . "<br>";
+}
+
         ?>
     </div>
 

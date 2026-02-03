@@ -37,7 +37,15 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+
+
+require_once __DIR__ . '/classes/Undergrad.php';
+
+$student = new Undergrad("Emily", "S123456", "Computer Science", 2);
+
+echo $student->getName();
+
         ?>
     </div>
 
@@ -58,7 +66,30 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
+
+
+require_once __DIR__ . '/Undergrad.php';
+require_once __DIR__ . '/Student.php';
+
+class Undergrad extends Student {
+    protected $course;
+    protected $year;
+
+    public function __construct($name, $number, $course, $year) {
+        parent::__construct($name, $number);
+        $this->course = $course;
+        $this->year = $year;
+    }
+
+    public function getCourse() {
+        return $this->course;
+    }
+
+    public function getYear() {
+        return $this->year;
+    }
+}
+
         ?>
     </div>
 
