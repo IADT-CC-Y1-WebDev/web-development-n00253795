@@ -11,6 +11,10 @@
 // Hint: Check if session is not already started, then call session_start()
 // -----------------------------------------------------------------------------
 // TODO: Start the session here
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 // =============================================================================
 
@@ -23,6 +27,15 @@
 // 4. Call exit
 // -----------------------------------------------------------------------------
 // TODO: Handle cookie theme selection here
+if (isset($_GET["cookie_theme"])) {
+    $theme = $_GET ["cookie_theme"];
+
+    setcookie("theme",$theme, time() + (60 * 60 * 24 *30), '/');
+
+    //Redirect to remove the query parameter
+    header("Location: 02-theme-selector.php");
+    exit;
+}
 
 // =============================================================================
 
@@ -35,6 +48,15 @@
 // 4. Call exit
 // -----------------------------------------------------------------------------
 // TODO: Handle session theme selection here
+if (isset($_GET["session_theme"])) {
+    $theme = $_GET ["session_theme"];
+
+    $_SESSION["theme"] = $theme;
+
+    //Redirect to remove the query parameter
+    header("Location: 02-theme-selector.php");
+    exit;
+}
 
 // =============================================================================
 
@@ -44,6 +66,22 @@
 // For $_GET['reset_session']: unset $_SESSION['theme']
 // -----------------------------------------------------------------------------
 // TODO: Handle reset actions here
+if (isset($_GET["reset_cookies"])) {
+    $now = time();
+    $expiry = $time - 3600;
+    setcookie("theme","", $expiry, "/");
+
+    //Redirect to remove the query parameter
+    header("Location: 02-theme-selector.php");
+    exit;
+}
+if(isset($_GET["reset_session"])) {
+    unset($_SESSION["theme"]);
+    
+    //Redirect to remove the query parameter
+    header("Location: 02-theme-selector.php");
+    exit;
+}
 
 // =============================================================================
 
@@ -65,6 +103,9 @@ $themes = [
 // TODO: Determine which theme to apply (cookie takes precedence over session)
 
 // =============================================================================
+echo'<pre>';
+print_r($_SESSION);
+echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
