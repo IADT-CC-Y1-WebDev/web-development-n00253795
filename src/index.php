@@ -53,33 +53,9 @@ $topics = [
 
     <h2>Capstone Project</h2>
     <div class="topic capstone">
-        <p>
-            The capstone project brings together everything you've learned in this module.
-            You will build a complete CRUD application for managing books, following the
-            structure and patterns demonstrated in the Games example.
-        </p>
-        <p>The project is divided into two phases:</p>
-        <ul>
-            <li>
-                <strong>Phase 1 (after PHP exercises):</strong> Build the PHP application 
-                with database connectivity, Active Record classes, and all CRUD operations.
-            </li>
-            <li>
-                <strong>Phase 2 (after JS exercises):</strong> Enhance your application with
-                JavaScript for improved user experience.
-            </li>
-        </ul>
-        <p>
-            The <a href="project/games/">games application</a> demonstrating the required 
-            structure and functionality.
-        </p>
-        <p>
-            You are required to build a CRUD application for books following the Games example. 
-            Detailed instructions are available <a href="project/books/instructions.php">here</a> 
-            and in the README.md file.
-        </p>
+        <h3>Final Assignment</h3>
         <div class="links">
-            <a href="project/books/">Your Project Folder</a>
+            <a href="capstone/starter/">Starter Files</a>
         </div>
     </div>
 </body>

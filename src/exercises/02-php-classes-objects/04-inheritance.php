@@ -37,14 +37,12 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        require_once __DIR__ . '/classes/Undergrad.php';
-
-
 require_once __DIR__ . '/classes/Undergrad.php';
 
-$student = new Undergrad("Emily", "S123456", "Computer Science", 2);
+$undergrad = new Undergrad("S001", "Alice", "Computer Science", 2);
 
-echo $student->getName();
+// Inherited method from Student
+echo "Name: " . $undergrad->getName();
 
         ?>
     </div>
@@ -66,29 +64,15 @@ echo $student->getName();
     <div class="output">
         <?php
         // TODO: Write your solution here
+require_once __DIR__ . '/classes/Undergrad.php';
 
+$undergrad = new Undergrad("S001", "Alice", "Computer Science", 2);
 
-require_once __DIR__ . '/Undergrad.php';
-require_once __DIR__ . '/Student.php';
-
-class Undergrad extends Student {
-    protected $course;
-    protected $year;
-
-    public function __construct($name, $number, $course, $year) {
-        parent::__construct($name, $number);
-        $this->course = $course;
-        $this->year = $year;
-    }
-
-    public function getCourse() {
-        return $this->course;
-    }
-
-    public function getYear() {
-        return $this->year;
-    }
-}
+// Display all information using getters
+echo "Name: " . $undergrad->getName() . "<br>";
+echo "Number: " . $undergrad->getNumber() . "<br>";
+echo "Course: " . $undergrad->getCourse() . "<br>";
+echo "Year: " . $undergrad->getYear() . "<br>";
 
         ?>
     </div>
@@ -106,7 +90,24 @@ class Undergrad extends Student {
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
+
+require_once __DIR__ . '/classes/Undergrad.php';
+
+// Array of three undergrad students
+$undergrads = [
+    new Undergrad("S001", "Alice", "Computer Science", 2),
+    new Undergrad("S002", "Bob", "Mathematics", 1),
+    new Undergrad("S003", "Charlie", "Physics", 3)
+];
+
+// Loop through each student and display their information
+foreach ($undergrads as $student) {
+    echo "Name: " . $student->getName() . "<br>";
+    echo "Number: " . $student->getNumber() . "<br>";
+    echo "Course: " . $student->getCourse() . "<br>";
+    echo "Year: " . $student->getYear() . "<br><br>";
+}
+
         ?>
     </div>
 

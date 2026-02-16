@@ -33,12 +33,10 @@
         <?php
         // TODO: Write your solution here
         require_once __DIR__ . '/classes/Student.php';
-        $wendy = new Student("1234567890", "Wendy", 100.00);
-        echo "Creating student: " . $wendy->getName() . "<br>";
+        echo "Creating students...<br>";
 
-        $paul = new Student("876544567", "Paul", 80.00);
-        echo "   Creating student: " . $paul->getName();
-        // echo "See solution in code";
+$student1 = new Student("S001", "Alice", 85);
+$student2 = new Student("S002", "Bob", 92);
 
         ?>
     </div>
@@ -61,10 +59,14 @@
         // TODO: Write your solution here
         require_once __DIR__ . '/classes/Student.php';
 
-        $wendy = new Student("1234567890", "Wendy");
+        echo "Creating student...<br>";
 
-        echo $wendy;
-        // echo "See solution in code";
+$student1 = new Student("S001", "Alice");
+
+echo "<br>Displaying student:<br>";
+echo $student1;   // __toString() is called automatically
+
+
         ?>
     </div>
 
@@ -85,17 +87,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-
         require_once __DIR__ . '/classes/Student.php';
+
         $students = [
-            new Student ("456789","Alice"),
-            new Student ("456789","Bob"),
-            new Student ("456789","Paul")
-        ];
-        foreach ($students as $student) {
-            echo $student . "  <br>";
-        // echo "See solution in code";
-        }
+    new Student("S001", "Alice"),
+    new Student("S002", "Bob"),
+    new Student("S003", "Charlie")
+];
+
+foreach ($students as $student) {
+    echo $student . "<br>";
+}
+
         ?>
     </div>
 
@@ -117,14 +120,11 @@
         <?php
         // TODO: Write your solution here
         require_once __DIR__ . '/classes/Student.php';
-        
-        $student1 = new Student("234567", "Alice");
-        $student2 = new Student("1234567", "Bob");
+        $student1 = new Student("Alice", "S001");
+        $student2 = new Student("Bob", "S002");
+        echo "Setting student1 to null...<br>";
         $student1 = null;
-        
-        echo "End of script .<br>";
-
-
+        echo "Script ending...<br>";
         ?>
     </div>
 
