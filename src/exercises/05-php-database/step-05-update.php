@@ -47,6 +47,54 @@ catch (PDOException $e) {
             // 3. Execute with new description + timestamp
             // 4. Check rowCount()
             // 5. Fetch and display updated book
+
+            try {
+                $selectStmt = $db->prepare("
+                    SELECT * FROM books WHERE id = :id
+                ");
+                
+                $selectStmt->execute(['id' => 1]);
+                $book = $selectStmt->fetch(PDO::FETCH_ASSOC);
+
+                if (!$book) {
+                    throw new Exception("Book with ID 1 not found.");
+                }
+
+                echo "<h3>Current Book Details:</h3>";
+                echo "Title: " . $book['title'] . "<br>";
+                echo "Author: " . $book['author'] . "<br>";
+                echo "Description: " . $book['description'] . "<br><br>";
+
+                $newDescription = 'An open-world action-adventure game set in the kingdom of Hyrule. (Updated: ' . date('H:i:s') . ')';
+
+                $updateStmt = $db->prepare("
+                    UPDATE books
+                    SET description = :description
+                    WHERE id = :id
+                ");
+
+                $updateStmt->execute([
+                    'description' => $newDescription,
+                    'id' => 1
+                ]);
+
+                if ($updateStmt->rowCount() === 0) {
+                    throw new Exception("No rows updated. Book may not exist.");
+                }
+
+
+                $selectStmt->execute(['id' => 1]);
+                $updatedBook = $selectStmt->fetch(PDO::FETCH_ASSOC);
+
+                echo "<h3>Updated Book Details:</h3>";
+                echo "Title: " . $updatedBook['title'] . "<br>";
+                echo "Author: " . $updatedBook['author'] . "<br>";
+                echo "Description: " . $updatedBook['description'] . "<br>";
+
+            } catch (Exception $e) {
+                echo "Error: " . $e->getMessage();
+            }
+
             ?>
         </div>
     </div>

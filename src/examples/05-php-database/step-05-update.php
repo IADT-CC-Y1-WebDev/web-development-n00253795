@@ -77,8 +77,10 @@ echo "Updated " . $stmt->rowCount() . " row(s)";</code></pre>
                 WHERE id = :id
             ");
 
+            $newDescription = 'An open-world action-adventure game set in the kingdom of Hyrule. (Updated: ' . date('H:i:s') . ')';
+ 
             $stmt->execute([
-                'description' => 'An open-world action-adventure game set in the kingdom of Hyrule. (Updated: ' . date('H:i:s') . ')',
+                'description' => $newDescription,
                 'id' => 1
             ]);
 

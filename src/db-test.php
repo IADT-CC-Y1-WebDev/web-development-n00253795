@@ -1,17 +1,17 @@
 <?php
-$server = "mysql-container";
-$username = "testuser";
-$password = "mysecret";
+// $server = "mysql-container";
+// $username = "testuser";
+// $password = "mysecret";
 
-try {
+// try {
     // Connect to the testdb database
-    $dbname = "testdb";
-    $conn = new PDO("mysql:host=$server;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} 
-catch (PDOException $e) {
-    die("<p>PDO Exception: " . $e->getMessage() . "</p>");
-}
+//     $dbname = "testdb";
+//     $conn = new PDO("mysql:host=$server;dbname=$dbname", $username, $password);
+//     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } 
+// catch (PDOException $e) {
+//     die("<p>PDO Exception: " . $e->getMessage() . "</p>");
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -48,6 +48,53 @@ catch (PDOException $e) {
             // 4. DELETE FROM books WHERE id = :id
             // 5. Check rowCount()
             // 6. Try to fetch the book again to verify deletion
+
+
+        try {
+            $insertStmt = $db->prepare("
+                INSERT INTO books (title, author, publisher_id, year, description)
+                VALUES (:title, :author, :publisher_id, :year, :description)
+            ");
+
+            $insertStmt->execute([
+                'title' => 'Temporary Book',
+                'author' => 'Test Author',
+                'publisher_id' => 1,
+                'year' => 2024,
+                'description' => 'This book will be deleted shortly.'
+            ]);
+
+            if ($insertStmt->rowCount() !== 1) {
+                throw new Exception("Failed to create temporary book.");
+            }
+
+            $tempBookId = $db->lastInsertId();
+            echo "Created temporary book with ID: " . $tempBookId . "<br><br>";
+
+            $deleteStmt = $db->prepare("DELETE FROM books WHERE id = :id");
+            $deleteStmt->execute(['id' => $tempBookId]);
+
+            if ($deleteStmt->rowCount() === 1) {
+                echo "Deleted 1 record successfully.<br><br>";
+            } else {
+                echo "No record deleted.<br><br>";
+            }
+
+
+            $checkStmt = $db->prepare("SELECT * FROM books WHERE id = :id");
+            $checkStmt->execute(['id' => $tempBookId]);
+            $deletedBook = $checkStmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$deletedBook) {
+                echo "Verification successful: Book no longer exists.";
+            } else {
+                echo "Deletion failed: Book still exists.";
+            }
+
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
             ?>
         </div>
     </div>

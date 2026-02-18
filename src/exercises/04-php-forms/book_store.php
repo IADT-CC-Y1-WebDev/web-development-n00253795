@@ -60,18 +60,19 @@ try {
     // TODO: Check validation data against the rules
     // Create validator and check if validation fails; if so, store the first 
     // error for each field in the $errors array and throw an exception
-try {
-    $rules = [
-    ];
-    $validator = new Validator($data, $rules);
-    if ($validator->fails()) {
-        foreach ($validator->errors() as $field => $messages) {
-            $errors[$field] = $messages[0];
-        }
-      }
-        throw
+// try {
+//     $rules = [
+//     ];
+//     $validator = new Validator($data, $rules);
+//     if ($validator->fails()) {
+//         foreach ($validator->errors() as $field => $messages) {
+//             $errors[$field] = $messages[0];
+//         }
+//       }
+//         throw
 
-}
+//     }
+//     }
 
     // =========================================================================
     // STEP 9: File Uploads

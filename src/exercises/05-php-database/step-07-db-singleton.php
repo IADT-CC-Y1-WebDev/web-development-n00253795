@@ -35,6 +35,41 @@ require_once __DIR__ . '/lib/config.php';
             // 3. Display the count
             // 4. Get DB::getInstance() twice and compare with ===
             // 5. Display whether they are the same instance
+
+        require_once 'lib/config.php'; // loads DB class and config
+
+        try {
+
+            $db = DB::getInstance()->getConnection();
+
+            $stmt = $db->query("SELECT COUNT(*) AS total FROM books");
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            echo "Total books in database: " . $result['total'] . "<br><br>";
+
+            $instance1 = DB::getInstance();
+            $instance2 = DB::getInstance();
+
+            if ($instance1 === $instance2) {
+                echo "Same instance! Singleton works correctly.<br>";
+            } else {
+                echo "Different instances (something is wrong).<br>";
+            }
+
+
+            $db1 = $instance1->getConnection();
+            $db2 = $instance2->getConnection();
+
+            if ($db1 === $db2) {
+                echo "Same PDO connection object!";
+            } else {
+                echo "Different PDO connections (error).";
+            }
+
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
             ?>
         </div>
     </div>
