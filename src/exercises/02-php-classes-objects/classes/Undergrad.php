@@ -2,12 +2,14 @@
 
 require_once __DIR__ . '/Student.php';
 
+// Undergrad inherits from Student
 class Undergrad extends Student {
+
     protected $course;
     protected $year;
 
-    public function __construct($name, $number, $course, $year) {
-        parent::__construct($number, $name);
+    public function __construct($num, $name, $course, $year) {
+        parent::__construct($num, $name);
         $this->course = $course;
         $this->year = $year;
     }
@@ -20,11 +22,10 @@ class Undergrad extends Student {
         return $this->year;
     }
 
-    // Override __toString()
+    // Override __toString() to include course and year
     public function __toString() {
-        return "Undergrad: " .
-               $this->getName() . " (" . $this->getNumber() . "), " .
-               $this->course . ", Year " . $this->year;
+        return "Undergrad: {$this->name} ({$this->number}), {$this->course}, Year {$this->year}";
     }
 }
+
 

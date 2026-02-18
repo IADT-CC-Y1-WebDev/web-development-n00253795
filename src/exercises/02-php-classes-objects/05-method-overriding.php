@@ -32,14 +32,16 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-
-
 require_once __DIR__ . '/classes/Student.php';
 require_once __DIR__ . '/classes/Undergrad.php';
 
-$student = new Student("Alice", "S100001");
-$undergrad = new Undergrad("Bob", "S200002", "Computer Science", 2);
+// Create a normal Student
+$student = new Student("S100", "Eve");
 
+// Create an Undergrad
+$undergrad = new Undergrad("S101", "Alice", "Computer Science", 2);
+
+// Echo both objects
 echo $student . "<br>";
 echo $undergrad;
 
@@ -70,16 +72,12 @@ echo $undergrad;
     <div class="output">
         <?php
         // TODO: Write your solution here
-
 require_once __DIR__ . '/classes/Postgrad.php';
 
-$postgrad = new Postgrad(
-    "Clara",
-    "P300003",
-    "Dr. Smith",
-    "Machine Learning"
-);
+// Create a Postgrad student
+$postgrad = new Postgrad("S201", "Bob", "Dr. Smith", "Quantum Computing");
 
+// Echo the object directly (uses overridden __toString())
 echo $postgrad;
 
         ?>
@@ -98,19 +96,19 @@ echo $postgrad;
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
-        // require_once __DIR__ . '/classes/Postgrad.php';
 
 require_once __DIR__ . '/classes/Student.php';
 require_once __DIR__ . '/classes/Undergrad.php';
 require_once __DIR__ . '/classes/Postgrad.php';
 
+// Create different types of students
 $students = [
-    new Student("S100001", "Alice"),
-    new Undergrad("Bob", "S200002", "Computer Science", 2),
-    new Postgrad("Clara", "P300003", "Dr. Smith", "Machine Learning")
+    new Student("S100", "Eve"),
+    new Undergrad("S101", "Alice", "Computer Science", 2),
+    new Postgrad("S201", "Bob", "Dr. Smith", "Quantum Computing")
 ];
 
+// Loop through them and echo each one
 foreach ($students as $student) {
     echo $student . "<br>";
 }

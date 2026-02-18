@@ -36,7 +36,20 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+require_once __DIR__ . '/classes/Student.php';
+
+echo "Initial student count: " . Student::getCount() . "<br>";
+
+// Create three students
+$student1 = new Student("S001", "Alice");
+echo "Student count: " . Student::getCount() . "<br>";
+
+$student2 = new Student("S002", "Bob");
+echo "Student count: " . Student::getCount() . "<br>";
+
+$student3 = new Student("S003", "Charlie");
+echo "Student count: " . Student::getCount() . "<br>";
+
         ?>
     </div>
 
@@ -71,7 +84,26 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+require_once __DIR__ . '/classes/Student.php';
+
+// Create three students
+$student1 = new Student("S001", "Alice");
+$student2 = new Student("S002", "Bob");
+$student3 = new Student("S003", "Charlie");
+
+// Display total number of students
+echo "Total students: " . Student::getCount() . "<br><br>";
+
+// Display all students using findAll()
+echo "<strong>All students:</strong><br>";
+foreach (Student::findAll() as $student) {
+    echo $student . "<br>";
+}
+
+echo "<br><strong>Find student S002:</strong><br>";
+$found = Student::findByNumber("S002");
+echo $found ? $found : "Student not found";
+
         ?>
     </div>
 
@@ -92,8 +124,31 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Undergrad.php';
-        // require_once __DIR__ . '/classes/Postgrad.php';
+
+require_once __DIR__ . '/classes/Student.php';
+require_once __DIR__ . '/classes/Undergrad.php';
+require_once __DIR__ . '/classes/Postgrad.php';
+
+// Create a mix of students
+$student1 = new Student("S100", "Eve");
+$undergrad1 = new Undergrad("S101", "Alice", "Computer Science", 2);
+$undergrad2 = new Undergrad("S102", "Bob", "Mathematics", 1);
+$postgrad1 = new Postgrad("S201", "Charlie", "Dr. Smith", "Quantum Computing");
+
+// Display total number of students
+echo "Total students: " . Student::getCount() . "<br><br>";
+
+// Display all students using findAll()
+echo "<strong>All students:</strong><br>";
+foreach (Student::findAll() as $student) {
+    echo $student . "<br>";
+}
+
+// Find a specific student by number
+echo "<br><strong>Find student S102:</strong><br>";
+$found = Student::findByNumber("S102");
+echo $found ? $found : "Student not found";
+
         ?>
     </div>
 
@@ -122,7 +177,29 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        // require_once __DIR__ . '/classes/Student.php';
+require_once __DIR__ . '/classes/Student.php';
+
+// Create three students
+$student1 = new Student("S001", "Alice");
+$student2 = new Student("S002", "Bob");
+$student3 = new Student("S003", "Charlie");
+
+// Display total students
+echo "Total students: " . Student::getCount() . "<br><br>";
+
+// Remove one student from registry and trigger destructor
+echo "Removing Bob...<br>";
+$student2->leave();  // Remove from static array
+unset($student2);    // Trigger __destruct()
+
+// Display total students again
+echo "<br>Total students after removal: " . Student::getCount() . "<br>";
+
+// Display remaining students
+echo "<strong>Remaining students:</strong><br>";
+foreach (Student::findAll() as $student) {
+    echo $student . "<br>";
+}
         ?>
     </div>
 
