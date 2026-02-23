@@ -46,7 +46,58 @@ catch (PDOException $e) {
             // 2. Prepare: UPDATE books SET description = :description WHERE id = :id
             // 3. Execute with new description + timestamp
             // 4. Check rowCount()
-            // 5. Fetch and display updated book
+            // 5. Fetch and display updated book 
+
+            try {
+
+                $selectStmt = $db->prepare("SELECT * FROM books WHERE id = :id");
+                $selectStmt->execute(['id' => 1]);
+                $book = $selectStmt->fetch(PDO::FETCH_ASSOC);
+
+                if (!$book) {
+                    throw new Exception("Book with ID 1 not found.");
+                }
+
+                echo "<h3>Current Book Details:</h3>";
+                echo "Title: " . $book['title'] . "<br>";
+                echo "Author: " . $book['author'] . "<br>";
+                echo "Year: " . $book['year'] . "<br>";
+                echo "Description: " . $book['description'] . "<br><br>";
+
+                $newDescription = $book['description'] . 
+                    " (Updated: " . date('Y-m-d H:i:s') . ")";
+
+                $updateStmt = $db->prepare("
+                    UPDATE books
+                    SET description = :description
+                    WHERE id = :id
+                ");
+
+                $updateStmt->execute([
+                    'description' => $newDescription,
+                    'id' => 1
+                ]);
+
+                if ($updateStmt->rowCount() === 0) {
+                    throw new Exception("No rows updated - book may not exist.");
+                }
+
+                echo "<h3>Update Successful!</h3>";
+                echo "Rows affected: " . $updateStmt->rowCount() . "<br><br>";
+
+                $selectStmt->execute(['id' => 1]);
+                $updatedBook = $selectStmt->fetch(PDO::FETCH_ASSOC);
+
+                echo "<h3>Updated Book Details:</h3>";
+                echo "Title: " . $updatedBook['title'] . "<br>";
+                echo "Author: " . $updatedBook['author'] . "<br>";
+                echo "Year: " . $updatedBook['year'] . "<br>";
+                echo "Description: " . $updatedBook['description'] . "<br>";
+
+            } catch (Exception $e) {
+                echo "Error: " . $e->getMessage();
+            }
+
             ?>
         </div>
     </div>
