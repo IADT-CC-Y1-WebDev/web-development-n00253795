@@ -30,14 +30,21 @@ try {
     // See: /examples/04-php-forms/step-01-form-submission/
     // =========================================================================
     // TODO: First, just dump the posted data to see what's submitted
-
-
+    dd($_POST);
+ 
     // =========================================================================
     // STEP 2: Check Request Method
     // See: /examples/04-php-forms/step-02-request-method/
     // =========================================================================
     // TODO: Check that the request method is POST
-
+    try {
+        // Check request method - only accept POST requests
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            throw new Exception('Invalid request method.');
+        }
+            dd($_POST);
+        }
+   
 
     // =========================================================================
     // STEP 3: Extract Data
@@ -50,6 +57,26 @@ try {
     // checkboxes can be selected. This is already handled in the $data 
     // extraction:
     // 'format_ids' => $_POST['format_ids'] ?? []
+
+        try {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            throw new Exception('Invalid request method.');
+        }
+
+        // Extract form data into an associative array
+        // The ?? operator provides a default value if the key doesn't exist
+        $data = [
+            'title' => $_POST['title'] ?? null,
+            'price' => $_POST['price'] ?? null,
+            'description' => $_POST['description'] ?? null
+        ];
+
+        // Now we can work with $data instead of $_POST
+        dd($data);
+    }
+    catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
 
 
     // =========================================================================

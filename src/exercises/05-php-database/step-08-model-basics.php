@@ -62,6 +62,9 @@ require_once __DIR__ . '/lib/config.php';
             } else {
                 echo "<pre>" . print_r($array, true) . "</pre>";
             }
+
+
+
             ?>
         </div>
     </div>

@@ -68,7 +68,15 @@ $formats = [
     <!-- See: /examples/04-php-forms/step-08-flash-messages/                 -->
     <!-- =================================================================== -->
     <!-- TODO: Include the flash message component here                      -->
+<?php
+// On success:
+setFlashMessage('success', 'Product created successfully!');
+redirect('product_create.php');
 
+// On error:
+setFlashMessage('error', 'Error: ' . $e->getMessage());
+redirect('product_create.php');
+?>
 
     <!-- =================================================================== -->
     <!-- STEP 9: File Uploads                                                -->
@@ -76,6 +84,7 @@ $formats = [
     <!-- =================================================================== -->
     <!-- TODO: Add enctype="multipart/form-data" to enable file uploads      -->
     <form action="book_store.php" method="POST">
+        
 
         <!-- =============================================================== -->
         <!-- Book Title Field                                                -->
