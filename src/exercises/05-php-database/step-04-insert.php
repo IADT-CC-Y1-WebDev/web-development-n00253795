@@ -56,9 +56,15 @@ catch (PDOException $e) {
             // 3. Check rowCount() === 1
             // 4. Get lastInsertId()
             // 5. Display success message with the new ID
+<<<<<<< HEAD
     
             try {
 
+=======
+
+            try {
+                // Prepare the INSERT statement
+>>>>>>> 038d4d9f99f86c03f512f45e39eff08149fe464b
                 $stmt = $db->prepare("
                     INSERT INTO books (title, author, publisher_id, year, description)
                     VALUES (:title, :author, :publisher_id, :year, :description)
@@ -67,12 +73,17 @@ catch (PDOException $e) {
                 // Execute with parameters
                 $success = $stmt->execute([
                     'title' => 'My Favorite Book',
+<<<<<<< HEAD
                     'author' => 'Your Name',
+=======
+                    'author' => 'Egshiglen',
+>>>>>>> 038d4d9f99f86c03f512f45e39eff08149fe464b
                     'publisher_id' => 1,
                     'year' => 2024,
                     'description' => 'A book I created for learning PDO'
                 ]);
 
+<<<<<<< HEAD
                 // Verify insert worked
                 if ($success && $stmt->rowCount() === 1) {
 
@@ -81,6 +92,13 @@ catch (PDOException $e) {
 
                     echo "Successfully inserted 1 book. New Book ID: " . $newBookId;
 
+=======
+                // Verify exactly one row was inserted
+                if ($success && $stmt->rowCount() === 1) {
+                    // Get the last inserted ID
+                    $newBookId = $db->lastInsertId();
+                    echo "Book inserted successfully! New Book ID: " . $newBookId;
+>>>>>>> 038d4d9f99f86c03f512f45e39eff08149fe464b
                 } else {
                     echo "Insert failed.";
                 }

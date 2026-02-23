@@ -60,7 +60,19 @@ try {
     // TODO: Check validation data against the rules
     // Create validator and check if validation fails; if so, store the first 
     // error for each field in the $errors array and throw an exception
+// try {
+//     $rules = [
+//     ];
+//     $validator = new Validator($data, $rules);
+//     if ($validator->fails()) {
+//         foreach ($validator->errors() as $field => $messages) {
+//             $errors[$field] = $messages[0];
+//         }
+//       }
+//         throw
 
+//     }
+//     }
 
     // =========================================================================
     // STEP 9: File Uploads
@@ -85,7 +97,8 @@ try {
     // See: /examples/04-php-forms/step-10-complete/
     // =========================================================================
     // TODO: Clear form data on success (before redirect)
-
+    clearFormData();
+    clearFormErrors();
 
     // =========================================================================
     // STEP 8: Flash Messages
@@ -101,6 +114,10 @@ catch (Exception $e) {
     // =========================================================================
     // TODO: In the catch block, store validation errors in the session
     // TODO: Redirect back to the form
+
+    redirect('success.php');
+}
+catch (Exception $e) {
 
 
     // =========================================================================
