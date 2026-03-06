@@ -41,14 +41,21 @@ $cart = ShoppingCart::getInstance();
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
 if (isset($_GET['add'])) {
-    $id = (int)$_GET['add'];
-    $product = Product::findById($id);
-    if ($product !== null) {
-        $cart ->add($id);
-}
 
-header("Location: cart.php");
-exit();
+    // 1. Get product ID
+    $id = (int)$_GET['add'];
+
+    // 2. Check if product exists
+    $product = Product::findById($id);
+
+    // 3. Add product to cart
+    if ($product !== null) {
+        $cart->add($product);
+    }
+
+    // 4. Redirect back to products page
+    header("Location: products.php");
+    exit();
 }
 
 // =============================================================================

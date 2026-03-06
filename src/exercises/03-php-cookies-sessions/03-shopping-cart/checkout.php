@@ -11,6 +11,9 @@ require_once './etc/config.php';
 // Exercise 1: Start the session
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // =============================================================================
 
@@ -18,6 +21,7 @@ require_once './etc/config.php';
 // Exercise 2: Initialize the cart
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
+$cart = ShoppingCart::getInstance();
 
 // =============================================================================
 
@@ -31,6 +35,14 @@ $orderCompleted = false;
 // 2. Clear the cart
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
+if (isset($_GET['complete']) && $cart->getCount() > 0) {
+
+    // 1. Mark order as completed
+    $orderCompleted = true;
+
+    // 2. Clear the cart
+    $cart->clear();
+}
 
 // =============================================================================
 

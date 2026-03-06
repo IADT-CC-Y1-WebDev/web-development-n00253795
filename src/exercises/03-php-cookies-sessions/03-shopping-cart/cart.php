@@ -15,7 +15,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-
 // =============================================================================
 
 // =============================================================================
@@ -23,7 +22,6 @@ if (session_status() === PHP_SESSION_NONE) {
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
 $cart = ShoppingCart::getInstance();
-
 // =============================================================================
 
 // =============================================================================
@@ -35,14 +33,17 @@ $cart = ShoppingCart::getInstance();
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
 if (isset($_GET['remove'])) {
-    $id = (int)$_GET['remove'];
-    $product = Product::findById($id);
-    if ($product !== null) {
-        $cart ->remove($id);
-}
 
-header("Location: cart.php");
-exit();
+    $id = (int)$_GET['remove'];
+
+    $product = Product::findById($id);
+
+    if ($product !== null) {
+        $cart->remove($id);
+    }
+
+    header("Location: cart.php");
+    exit();
 }
 // =============================================================================
 
@@ -54,6 +55,15 @@ exit();
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
 
+if (isset($_GET['clear'])) {
+
+    $cart->clear();
+
+    header("Location: cart.php");
+    exit();
+}
+
+
 // =============================================================================
 
 // =============================================================================
@@ -64,6 +74,21 @@ exit();
 // 3. Redirect back to cart.php
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
+
+if (isset($_GET['update']) && isset($_GET['qty'])) {
+
+    $id = (int)$_GET['update'];
+    $qty = (int)$_GET['qty'];
+
+    $product = Product::findById($id);
+
+    if ($product !== null && $qty > 0) {
+        $cart->update($id, $qty);
+    }
+
+    header("Location: cart.php");
+    exit();
+}
 
 // =============================================================================
 

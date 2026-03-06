@@ -83,8 +83,7 @@ redirect('product_create.php');
     <!-- See: /examples/04-php-forms/step-09-file-uploads/                   -->
     <!-- =================================================================== -->
     <!-- TODO: Add enctype="multipart/form-data" to enable file uploads      -->
-    <form action="book_store.php" method="POST">
-        
+        <form action="book_store.php" method="POST" enctype="multipart/form-data">
 
         <!-- =============================================================== -->
         <!-- Book Title Field                                                -->
@@ -97,14 +96,20 @@ redirect('product_create.php');
                  ===========================================================
                  TODO: Repopulate title field
             -->
-            <input type="text" id="title" name="title" value="">
+            <input type="text" id="title" name="title" value="<?= h(old('title')) ?>">
+<?php if (error('title')): ?>
+    <p class="error"><?= error('title') ?></p>
+<?php endif; ?>
+
 
             <!-- ===========================================================
                  STEP 5: Display Errors
                  See: /examples/04-php-forms/step-05-display-errors/
                  ===========================================================
                  TODO: Display error message if title validation fails
-            -->
+            --> <?php if (error('title')): ?>
+                    <p class="error"><?= error('title') ?></p>
+                <?php endif; ?>
 
         </div>
 
@@ -114,9 +119,12 @@ redirect('product_create.php');
         <div class="form-group">
             <label for="author">Author:</label>
             <!-- TODO: Repopulate author field                               -->
-            <input type="text" id="author" name="author" value="">
+<input type="text" id="author" name="author" value="<?= h(old('author')) ?>">
 
             <!-- TODO: Display error message if author validation fails      -->
+             <?php if (error('author')): ?>
+    <p class="error"><?= error('author') ?></p>
+<?php endif; ?>
 
         </div>
 
@@ -133,15 +141,20 @@ redirect('product_create.php');
                      See: /examples/04-php-forms/step-07-select-checkbox/
                      ======================================================= 
                      TODO: Use chosen() to repopulate selected option 
-                -->
-                <?php foreach ($publishers as $pub): ?>
-                    <option value="<?= $pub['id'] ?>">
-                        <?= h($pub['name']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+                     <select id="publisher_id" name="publisher_id">
+    <option value="">-- Select Publisher --</option>
+    <?php foreach ($publishers as $pub): ?>
+    <option value="<?= $pub['id'] ?>" <?= chosen('publisher_id', $pub['id']) ? 'selected' : '' ?>>
+        <?= h($pub['name']) ?>
+    </option>
+<?php endforeach; ?>
 
-            <!-- TODO: Display error message if publisher validation fails   -->
+
+
+            <-- TODO: Display error message if publisher validation fails   -->
+             <?php if (error('publisher_id')): ?>
+    <p class="error"><?= error('publisher_id') ?></p>
+<?php endif; ?>
 
         </div>
 
@@ -154,7 +167,10 @@ redirect('product_create.php');
             <input type="text" id="year" name="year" value="">
 
             <!-- TODO: Display error message if year validation fails        -->
-
+<input type="text" id="year" name="year" value="<?= h(old('year')) ?>">
+<?php if (error('year')): ?>
+    <p class="error"><?= error('year') ?></p>
+<?php endif; ?>
         </div>
 
         <!-- =============================================================== -->
@@ -166,6 +182,10 @@ redirect('product_create.php');
             <input type="text" id="isbn" name="isbn" value="">
 
             <!-- TODO: Display error message if ISBN validation fails        -->
+             <input type="text" id="isbn" name="isbn" value="<?= h(old('isbn')) ?>">
+<?php if (error('isbn')): ?>
+    <p class="error"><?= error('isbn') ?></p>
+<?php endif; ?>
 
         </div>
 
@@ -182,6 +202,16 @@ redirect('product_create.php');
                      =======================================================
                       TODO: Use chosen() to repopulate checkbox state
                 -->
+                      <?php foreach ($formats as $format): ?>
+    <label class="checkbox-label">
+        <input type="checkbox" name="format_ids[]" value="<?= $format['id'] ?>" 
+            <?= chosen('format_ids', $format['id']) ? 'checked' : '' ?>>
+        <?= h($format['name']) ?>
+    </label>
+<?php endforeach; ?>
+<?php if (error('format_ids')): ?>
+    <p class="error"><?= error('format_ids') ?></p>
+<?php endif; ?>
                 <?php foreach ($formats as $format): ?>
                     <label class="checkbox-label">
                         <input type="checkbox" name="format_ids[]" value="<?= $format['id'] ?>">
@@ -203,6 +233,10 @@ redirect('product_create.php');
             <textarea id="description" name="description" rows="5"></textarea>
 
             <!-- TODO: Display error message if description validation fails -->
+             <textarea id="description" name="description" rows="5"><?= h(old('description')) ?></textarea>
+<?php if (error('description')): ?>
+    <p class="error"><?= error('description') ?></p>
+<?php endif; ?>
 
         </div>
 
@@ -216,7 +250,10 @@ redirect('product_create.php');
             <input type="file" id="cover" name="cover" accept="image/*">
 
             <!-- TODO: Display error message if cover validation fails       -->
-
+<input type="file" id="cover" name="cover" accept="image/*">
+<?php if (error('cover')): ?>
+    <p class="error"><?= error('cover') ?></p>
+<?php endif; ?>
         </div>
 
         <!-- =============================================================== -->
@@ -232,8 +269,9 @@ redirect('product_create.php');
     <!-- See: /examples/04-php-forms/step-10-complete/                       -->
     <!-- =================================================================== -->
     <!-- TODO: Clear form data and errors after displaying the page          -->
-    <?php
-    //   Clear form data and errors
-    ?>
+<?php
+clearFormData();
+clearFormErrors();
+?>
     </body>
 </html>

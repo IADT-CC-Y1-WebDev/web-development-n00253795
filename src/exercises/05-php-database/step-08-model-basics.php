@@ -36,7 +36,10 @@ require_once __DIR__ . '/lib/config.php';
             // Test 1: Create empty Book
             $book = new Book();
             echo "<h4>Test 1: Empty Book</h4>";
-            echo "<p>Title: " . ($book->title ?? 'null') . "</p>";
+            echo "<p>Title: " . htmlspecialchars($book->title ?? 'null') . "</p>";
+            echo "<p>Author: " . htmlspecialchars($book->author ?? 'null') . "</p>";
+            echo "<p>Publisher ID: " . htmlspecialchars($book->publisher_id ?? 'null') . "</p>";
+
 
             // Test 2: Create Book from data
             $data = [
@@ -53,7 +56,11 @@ require_once __DIR__ . '/lib/config.php';
             echo "<h4>Test 2: Book from Data</h4>";
             echo "<p>Title: " . htmlspecialchars($book2->title ?? 'NOT IMPLEMENTED') . "</p>";
             echo "<p>Author: " . htmlspecialchars($book2->author ?? 'NOT IMPLEMENTED') . "</p>";
-
+            echo "<p>Publisher ID: " . htmlspecialchars($book2->publisher_id ?? 'NOT IMPLEMENTED') . "</p>";
+            echo "<p>Year: " . htmlspecialchars($book2->year ?? 'NOT IMPLEMENTED') . "</p>";
+            echo "<p>ISBN: " . htmlspecialchars($book2->isbn ?? 'NOT IMPLEMENTED') . "</p>";
+            echo "<p>Description: " . htmlspecialchars($book2->description ?? 'NOT IMPLEMENTED') . "</p>";
+            echo "<p>Cover Filename: " . htmlspecialchars($book2->cover_filename ?? 'NOT IMPLEMENTED') . "</p>";
             // Test 3: toArray
             echo "<h4>Test 3: toArray()</h4>";
             $array = $book2->toArray();

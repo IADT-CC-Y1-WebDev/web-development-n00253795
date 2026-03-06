@@ -28,8 +28,9 @@ startSession();
     <!-- See: /examples/04-php-forms/step-10-complete/                       -->
     <!-- =================================================================== -->
     <!-- TODO: Clear form data and errors after displaying the page          -->
-    <?php
-    //   Clear form data and errors
-    ?>
+<?php
+clearFormData();
+clearFormErrors();
+?>
     </body>
 </html>
