@@ -7,8 +7,8 @@ require_once 'php/lib/utils.php';
 startSession();
 //game to book, genre to publisher, platform to format
 try {
-    $genres = Genre::findAll();
-    $platforms = Platform::findAll();
+    $publishers = Publisher::findAll();
+    $formats = Format::findAll();
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -27,7 +27,7 @@ catch (PDOException $e) {
                 <?php require 'php/inc/flash_message.php'; ?>
             </div>
             <div class="width-12">
-                <h1>Create Game</h1>
+                <h1>Create Book</h1>
             </div>
             <div class="width-12">
                 <form action="book_store.php" method="POST" enctype="multipart/form-data">
@@ -40,57 +40,56 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="release_date">Release Year:</label>
+                        <label class="special" for="author">Author:</label>
                         <div>
-                            <input type="date" id="release_date" name="release_date" value="<?= old('release_date') ?>" required>
-                            <p><?= error('release_date') ?></p>
+                            <input type="date" id="author" name="author" value="<?= old('author') ?>" required>
+                            <p><?= error('author') ?></p>
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="genre_id">Genre:</label>
+                        <label class="special" for="publisher_id">Publisher:</label>
                         <div>
-                            <select id="genre_id" name="genre_id" required>
-                                <?php foreach ($genres as $genre) { ?>
-                                    <option value="<?= h($genre->id) ?>" <?= chosen('genre_id', $genre->id) ? "selected" : "" ?>>
-                                        <?= h($genre->name) ?>
+                            <select id="publisher_id" name="publisher_id" required>
+                                <?php foreach ($publishers as $publisher) { ?>
+                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher_id', $publisher->id) ? "selected" : "" ?>>
+                                        <?= h($publisher->name) ?>
                                     </option>
                                 <?php } ?>
                             </select>
-                            <p><?= error('genre_id') ?></p>
-                        </div>
-                    </div>
-
-<!-- DO THIS FOR ALL -->
-                    <div class="input">
-                        <label class="special" for="year">Release Year:</label>
-                        <div>
-                            <input type="date" id="release_date" name="release_date" value="<?= old('release_date') ?>" required>
-                            <p><?= error('release_date') ?></p>
+                            <p><?= error('publisher_id') ?></p>
                         </div>
                     </div>
 
                     <div class="input">
-                        <label class="special" for="isbn">Release Year:</label>
+                        <label class="special" for="year">Year:</label>
                         <div>
-                            <input type="date" id="release_date" name="release_date" value="<?= old('release_date') ?>" required>
-                            <p><?= error('release_date') ?></p>
+                            <input type="date" id="year" name="year" value="<?= old('year') ?>" required>
+                            <p><?= error('year') ?></p>
+                        </div>
+                    </div>
+
+                    <div class="input">
+                        <label class="special" for="isbn">Isbn:</label>
+                        <div>
+                            <input type="date" id="isbn" name="isbn" value="<?= old('isbn') ?>" required>
+                            <p><?= error('isbn') ?></p>
                         </div>
                     </div>
 
 
                     
                     <div class="input">
-                        <label class="special">Platforms:</label>
+                        <label class="special">Formats:</label>
                         <div>
-                            <?php foreach ($platforms as $platform) { ?>
+                            <?php foreach ($formats as $format) { ?>
                                 <div>
                                     <input type="checkbox" 
-                                        id="platform_<?= h($platform->id) ?>" 
-                                        name="platform_ids[]" 
-                                        value="<?= h($platform->id) ?>"
-                                        <?= chosen('platform_ids', $platform->id) ? "checked" : "" ?>
+                                        id="format_<?= h($format->id) ?>" 
+                                        name="format_ids[]" 
+                                        value="<?= h($format->id) ?>"
+                                        <?= chosen('format_ids', $format->id) ? "checked" : "" ?>
                                         >
-                                    <label for="platform_<?= h($platform->id) ?>"><?= h($platform->name) ?></label>
+                                    <label for="format_<?= h($format->id) ?>"><?= h($format->name) ?></label>
                                 </div>
                             <?php } ?>
                         </div>

@@ -20,10 +20,12 @@ try {
     // Get form data  //DO SAME PATTERN HERE AND NAMES MATCH
     $data = [ 
         'title' => $_POST['title'] ?? null,
-        'release_date' => $_POST['release_date'] ?? null,
-        'genre_id' => $_POST['genre_id'] ?? null,
+        'author' => $_POST['author'] ?? null,
+        'publisher_id' => $_POST['publisher_id'] ?? null,
+        'year' => $_POST['year'] ?? null,
+        'isbn' => $_POST['isbn'] ?? null,
         'description' => $_POST['description'] ?? null,
-        'platform_ids' => $_POST['platform_ids'] ?? [],
+        'format_ids' => $_POST['format_ids'] ?? [],
         'cover' => $_FILES['cover'] ?? null
     ];
 
@@ -54,9 +56,9 @@ try {
 
     // All validation passed - now process and save
     // Verify genre exists
-    $genre = Genre::findById($data['genre_id']); //publisher instead of genre
-    if (!$genre) {
-        throw new Exception('Selected genre does not exist.');
+    $publisher = Publisher::findById($data['publisher_id']); //publisher instead of genre
+    if (!$publisher) {
+        throw new Exception('Selected publisher does not exist.');
     }
 
     // Process the uploaded image (validation already completed)
@@ -68,21 +70,23 @@ try {
     }
 
     // Create new game instance //change all games to books //same pattern aswell
-    $game = new Game();
-    $game->title = $data['title'];
-    $game->release_date = $data['release_date'];
-    $game->genre_id = $data['genre_id'];
-    $game->description = $data['description'];
-    $game->image_filename = $imageFilename;
+    $book = new Book();
+    $book->title = $data['title'];
+    $book->author = $data['author'];
+    $book->publisher_id = $data['publisher_id'];
+    $book->year = $data['year'];
+    $book->isbn = $data['isbn'];
+    $book->description = $data['description'];
+    $book->cover_filename = $coverFilename;
 
     // Save to database
-    $game->save();
-    // Create platform associations //change platform to formats
-    if (!empty($data['formats_id']) && is_array($data['platform_ids'])) {
-        foreach ($data['platform_ids'] as $platformId) {
-            // Verify platform exists before creating relationship
-            if (Platform::findById($platformId)) {
-                GamePlatform::create($game->id, $platformId);
+    $book->save();
+    // Create Format associations //change Format to formats
+    if (!empty($data['formats_id']) && is_array($data['format_ids'])) {
+        foreach ($data['format_ids'] as $formatId) {
+            // Verify Format exists before creating relationship
+            if (Format::findById($formatId)) {
+                BookFormat::create($book->id, $formatId);
             }
         }
     }
