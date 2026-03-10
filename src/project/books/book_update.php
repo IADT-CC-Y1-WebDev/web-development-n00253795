@@ -22,23 +22,26 @@ try {
         'id' => $_POST['id'] ?? null,
         'title' => $_POST['title'] ?? null,
         'author' => $_POST['author'] ?? null,
-        'publisher' => $_POST['publisher'] ?? null,
+        'publisher_id' => $_POST['publisher_id'] ?? null,
         'year' => $_POST['year'] ?? null,
         'isbn' => $_POST['isbn'] ?? null,
-        'description' => $_POST['description'] ?? null,
         'format_ids' => $_POST['format_ids'] ?? [],
+        'description' => $_POST['description'] ?? null,  
         'cover' => $_FILES['cover'] ?? null
     ];
 
     // Define validation rules
+    $year = date("Y");
     $rules = [
-        'id' => 'required|integer',
+        'id' => 'required|notempty|min:1|max:255',
         'title' => 'required|notempty|min:1|max:255',
-        'author' => 'required|notempty',
-        'publisher' => 'required|integer',
-        'description' => 'required|notempty|min:10|max:5000',
-        'format_ids' => 'required|array|min:1|max:10',
-        'cover' => 'file|cover|mimes:jpg,jpeg,png|max_file_size:5242880' // optional -- no required rule
+        'author' => 'required|notempty|min:1|max:255',
+        'publisher_id' => 'required|notempty|integer',
+        'year' => 'required|notempty|integer|minvalue:1900|maxvalue:' . $year,
+        'isbn' => 'required|notempty|min:13|max:13',
+        'format_ids' => 'required|notempty|array|min:1|max:4',
+        'description' => 'required|notempty|min:10|max:1000',
+        'cover' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
     ];
 
     // Validate all data (including file)
@@ -60,8 +63,8 @@ try {
     }
 
     // Verify genre exists
-    $publisher = Publisher::findById($data['publisher']);
-    if (!$publisher) {
+    $publishers = Publisher::findById($data['publisher_id']);
+    if (!$publishers) {
         throw new Exception('Selected publisher does not exist.');
     }
 
@@ -87,9 +90,12 @@ try {
     }
     
     // Update the game instance  //just paste from book store 
+    $book->id = $data['id'];
     $book->title = $data['title'];
     $book->author = $data['author'];
     $book->publisher = $data['publisher'];
+    $book->year = $data['year'];
+    $book->isbn = $data['isbn'];
     $book->description = $data['description'];
     if ($coverFilename) {
         $book->cover_filename = $coverFilename;

@@ -24,8 +24,8 @@ try {
         'publisher_id' => $_POST['publisher_id'] ?? null,
         'year' => $_POST['year'] ?? null,
         'isbn' => $_POST['isbn'] ?? null,
-        'description' => $_POST['description'] ?? null,
         'format_ids' => $_POST['format_ids'] ?? [],
+        'description' => $_POST['description'] ?? null,
         'cover' => $_FILES['cover'] ?? null
     ];
 
@@ -56,8 +56,8 @@ try {
 
     // All validation passed - now process and save
     // Verify genre exists
-    $publisher = Publisher::findById($data['publisher_id']); //publisher instead of genre
-    if (!$publisher) {
+    $publishers = Publisher::findById($data['publisher_id']); //publisher instead of genre
+    if (!$publishers) {
         throw new Exception('Selected publisher does not exist.');
     }
 
@@ -82,7 +82,7 @@ try {
     // Save to database
     $book->save();
     // Create Format associations //change Format to formats
-    if (!empty($data['formats_id']) && is_array($data['format_ids'])) {
+    if (!empty($data['format_ids']) && is_array($data['format_ids'])) {
         foreach ($data['format_ids'] as $formatId) {
             // Verify Format exists before creating relationship
             if (Format::findById($formatId)) {
