@@ -1,7 +1,7 @@
 <?php
 require_once 'php/lib/config.php';
 require_once 'php/lib/utils.php';
-//
+
 try {
     $books = Book::findAll();
     $publishers = Publisher::findAll();
@@ -22,10 +22,10 @@ catch (PDOException $e) {
             <div class="width-12 header">
                 <?php require 'php/inc/flash_message.php'; ?>
                 <div class="button">
-                    <a href="game_create.php">Add New Book</a>
+                    <a href="book_create.php">Add New Book</a>
                 </div>
             </div>
-            <?php if (!empty($games)) { ?>
+            <?php if (!empty($books)) { ?>
                 <div class="width-12 filters">
                     <form>
                         <div>
@@ -33,20 +33,20 @@ catch (PDOException $e) {
                             <input type="text" id="title_filter" name="title_filter">
                         </div>
                         <div>
-                            <label for="genre_filter">Genre:</label>
-                            <select id="genre_filter" name="genre_filter">
-                                <option value="">All Genres</option>
-                                <?php foreach ($genres as $genre) { ?>
-                                    <option value="<?= h($genre->id) ?>"><?= h($genre->name) ?></option>
+                            <label for="publisher_filter">Publisher:</label>
+                            <select id="publisher_filter" name="publisher_filter">
+                                <option value="">All Publishers</option>
+                                <?php foreach ($publishers as $publisher) { ?>
+                                    <option value="<?= h($publisher->id) ?>"><?= h($publisher->name) ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                         <div>
-                            <label for="platform_filter">Platform:</label>
-                            <select id="platform_filter" name="platform_filter">
-                                <option value="">All Platforms</option>
-                                <?php foreach ($platforms as $platform) { ?>
-                                    <option value="<?= h($platform->id) ?>"><?= h($platform->name) ?></option>
+                            <label for="format_filter">Format:</label>
+                            <select id="format_filter" name="format_filter">
+                                <option value="">All Formats</option>
+                                <?php foreach ($formats as $format) { ?>
+                                    <option value="<?= h($format->id) ?>"><?= h($format->name) ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -59,22 +59,22 @@ catch (PDOException $e) {
             <?php } ?>
         </div>
         <div class="container">
-            <?php if (empty($games)) { ?>
-                <p>No games found.</p>
+            <?php if (empty($books)) { ?>
+                <p>No books found.</p>
             <?php } else { ?>
                 <div class="width-12 cards">
-                    <?php foreach ($games as $game) { ?>
+                    <?php foreach ($books as $book) { ?>
                         <div class="card">
                             <div class="top-content">
-                                <h2>Title: <?= h($game->title) ?></h2>
-                                <p>Release Year: <?= h($game->release_date) ?></p>
+                                <h2>Title: <?= h($book->title) ?></h2>
+                                <p>Author: <?= h($book->author) ?></p>
                             </div>
                             <div class="bottom-content">
-                                <img src="images/<?= h($game->image_filename) ?>" alt="Image for <?= h($game->title) ?>" />
+                                <img src="images/<?= h($book->cover_filename) ?>" alt="Image for <?= h($book->title) ?>" />
                                 <div class="actions">
-                                    <a href="game_view.php?id=<?= h($game->id) ?>">View</a>/ 
-                                    <a href="game_edit.php?id=<?= h($game->id) ?>">Edit</a>/ 
-                                    <a href="game_delete.php?id=<?= h($game->id) ?>">Delete</a>
+                                    <a href="book_view.php?id=<?= h($book->id) ?>">View</a>/ 
+                                    <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a>/ 
+                                    <a href="book_delete.php?id=<?= h($book->id) ?>">Delete</a>
                                 </div>
                             </div>
                         </div>

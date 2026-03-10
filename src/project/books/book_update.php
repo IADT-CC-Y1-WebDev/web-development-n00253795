@@ -21,22 +21,24 @@ try {
     $data = [
         'id' => $_POST['id'] ?? null,
         'title' => $_POST['title'] ?? null,
-        'release_date' => $_POST['release_date'] ?? null,
-        'genre_id' => $_POST['genre_id'] ?? null,
+        'author' => $_POST['author'] ?? null,
+        'publisher' => $_POST['publisher'] ?? null,
+        'year' => $_POST['year'] ?? null,
+        'isbn' => $_POST['isbn'] ?? null,
         'description' => $_POST['description'] ?? null,
-        'platform_ids' => $_POST['platform_ids'] ?? [],
-        'image' => $_FILES['image'] ?? null
+        'format_ids' => $_POST['format_ids'] ?? [],
+        'cover' => $_FILES['cover'] ?? null
     ];
 
     // Define validation rules
     $rules = [
         'id' => 'required|integer',
         'title' => 'required|notempty|min:1|max:255',
-        'release_date' => 'required|notempty',
-        'genre_id' => 'required|integer',
+        'author' => 'required|notempty',
+        'publisher' => 'required|integer',
         'description' => 'required|notempty|min:10|max:5000',
-        'platform_ids' => 'required|array|min:1|max:10',
-        'image' => 'file|image|mimes:jpg,jpeg,png|max_file_size:5242880' // optional -- no required rule
+        'format_ids' => 'required|array|min:1|max:10',
+        'cover' => 'file|cover|mimes:jpg,jpeg,png|max_file_size:5242880' // optional -- no required rule
     ];
 
     // Validate all data (including file)
@@ -52,21 +54,21 @@ try {
     }
 
     // Find existing game
-    $game = Game::findById($data['id']);
-    if (!$game) {
-        throw new Exception('Game not found.');
+    $book = Book::findById($data['id']);
+    if (!$book) {
+        throw new Exception('Book not found.');
     }
 
     // Verify genre exists
-    $genre = Genre::findById($data['genre_id']);
-    if (!$genre) {
-        throw new Exception('Selected genre does not exist.');
+    $publisher = Publisher::findById($data['publisher']);
+    if (!$publisher) {
+        throw new Exception('Selected publisher does not exist.');
     }
 
     // Verify platforms exist
-    foreach ($data['platform_ids'] as $platformId) {
-        if (!Platform::findById($platformId)) {
-            throw new Exception('One or more selected platforms do not exist.');
+    foreach ($data['format_ids'] as $formatId) {
+        if (!Format::findById($formatId)) {
+            throw new Exception('One or more selected formats do not exist.');
         }
     }
 
@@ -85,23 +87,23 @@ try {
     }
     
     // Update the game instance  //just paste from book store 
-    $game->title = $data['title'];
-    $game->release_date = $data['release_date'];
-    $game->genre_id = $data['genre_id'];
-    $game->description = $data['description'];
+    $book->title = $data['title'];
+    $book->author = $data['author'];
+    $book->publisher = $data['publisher'];
+    $book->description = $data['description'];
     if ($coverFilename) {
         $book->cover_filename = $coverFilename;
     }
 
     // Save to database
-    $game->save();
+    $book->save();
 
     // Delete existing platform associations
-    GamePlatform::deleteByGame($game->id);
+    BookFormat::deleteByBook($book->id);
     // Create new platform associations
-    if (!empty($data['platform_ids']) && is_array($data['platform_ids'])) {
-        foreach ($data['platform_ids'] as $platformId) {
-            GamePlatform::create($game->id, $platformId);
+    if (!empty($data['format_ids']) && is_array($data['format_ids'])) {
+        foreach ($data['format_ids'] as $formatId) {
+            BookFormat::create($book->id, $formatId);
         }
     }
 
@@ -111,10 +113,10 @@ try {
     clearFormErrors();
 
     // Set success flash message
-    setFlashMessage('success', 'Game updated successfully.');
+    setFlashMessage('success', 'Book updated successfully.');
 
     // Redirect to game details page
-    redirect('game_view.php?id=' . $game->id);
+    redirect('book_view.php?id=' . $book->id);
 }
 catch (Exception $e) {
     // Error - clean up uploaded image

@@ -20,49 +20,49 @@ class Format {   //platforms=fortmat/formats
     // Find all platforms
     public static function findAll() {
         $db = DB::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM platforms ORDER BY name");
+        $stmt = $db->prepare("SELECT * FROM formats ORDER BY name");
         $stmt->execute();
 
-        $platforms = [];
+        $formats = [];
         while ($row = $stmt->fetch()) {
-            $platforms[] = new Platform($row);
+            $formats[] = new Format($row);
         }
 
-        return $platforms;
+        return $formats;
     }
 
     // Find platform by ID
     public static function findById($id) {
         $db = DB::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM platforms WHERE id = :id");
+        $stmt = $db->prepare("SELECT * FROM formats WHERE id = :id");
         $stmt->execute(['id' => $id]);
 
         $row = $stmt->fetch();
         if ($row) {
-            return new Platform($row);
+            return new Format($row);
         }
 
         return null;
     }
 
     // Find platforms by game (requires JOIN with game_platform table)
-    public static function findByGame($gameId) {
+    public static function findByBook($bookId) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("
             SELECT p.*
-            FROM platforms p
-            INNER JOIN game_platform gp ON p.id = gp.platform_id
-            WHERE gp.game_id = :game_id
+            FROM formats p
+            INNER JOIN book_formats gp ON p.id = gp.formats_id
+            WHERE gp.book_id = :book_id
             ORDER BY p.name
         ");
-        $stmt->execute(['game_id' => $gameId]);
+        $stmt->execute(['book_id' => $bookId]);
 
-        $platforms = [];
+        $formats = [];
         while ($row = $stmt->fetch()) {
-            $platforms[] = new Platform($row);
+            $formats[] = new Format($row);
         }
 
-        return $platforms;
+        return $formats;
     }
     
     // Convert to array for JSON output
