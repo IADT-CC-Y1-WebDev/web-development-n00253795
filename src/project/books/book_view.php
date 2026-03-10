@@ -1,8 +1,11 @@
 <?php
 //game to book, genre to publisher, platform to format
 require_once 'php/lib/config.php';
+require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
+require_once 'php/lib/session.php';
 
+startSession();
 if ($_SERVER['REQUEST_METHOD'] !== 'GET' || !array_key_exists('id', $_GET)) {
     die("<p>Error: No book ID provided.</p>");
 }
@@ -55,7 +58,7 @@ catch (PDOException $e) {
                     <div class="bottom-content">
                         <h2><?= htmlspecialchars($book->title) ?></h2>
                         <p>Author: <?= htmlspecialchars($book->author) ?></p>
-                        <p>Publisher: <?= htmlspecialchars($publisher->name) ?></p>
+                        <p>Publisher: <?= htmlspecialchars($publishers->name) ?></p>
                         <p>Year: <?= htmlspecialchars($book->year) ?></p>
                         <p>Isbn: <?= htmlspecialchars($book->isbn) ?></p>
                         <p>Description:<br /><?= nl2br(htmlspecialchars($book->description)) ?></p>

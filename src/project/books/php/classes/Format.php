@@ -3,7 +3,6 @@
 class Format {   //platforms=fortmat/formats
     public $id;
     public $name;
-    public $manufacturer;
 
     private $db;
 
@@ -13,7 +12,6 @@ class Format {   //platforms=fortmat/formats
         if (!empty($data)) {
             $this->id = $data['id'] ?? null;
             $this->name = $data['name'] ?? null;
-            $this->manufacturer = $data['manufacturer'] ?? null;
         }
     }
 
@@ -49,11 +47,11 @@ class Format {   //platforms=fortmat/formats
     public static function findByBook($bookId) {
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("
-            SELECT p.*
-            FROM formats p
-            INNER JOIN book_formats gp ON p.id = gp.formats_id
-            WHERE gp.book_id = :book_id
-            ORDER BY p.name
+            SELECT f.*
+            FROM formats f
+            INNER JOIN book_format bf ON f.id = bf.format_id
+            WHERE bf.book_id = :book_id
+            ORDER BY f.name
         ");
         $stmt->execute(['book_id' => $bookId]);
 
@@ -69,8 +67,7 @@ class Format {   //platforms=fortmat/formats
     public function toArray() {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'manufacturer' => $this->manufacturer
+            'name' => $this->name
         ];
     }
 }

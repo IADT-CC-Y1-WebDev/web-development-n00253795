@@ -5,7 +5,6 @@ require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
 
 startSession();
-//game to book, genre to publisher, platform to format
 try {
     $publishers = Publisher::findAll();
     $formats = Format::findAll();
@@ -30,7 +29,7 @@ catch (PDOException $e) {
                 <h1>Create Book</h1>
             </div>
             <div class="width-12">
-                <form action="book_store.php" method="POST" enctype="multipart/form-data">
+                <form action="book_store.php" method="POST" enctype="multipart/form-data" novalidate>
                     <div class="input">
                         <!-- DO SAME PATTERN FOR this that came from book.php -->
                         <label class="special" for="title">Title:</label> 

@@ -61,6 +61,7 @@ require_once __DIR__ . '/lib/config.php';
             echo "<p>ISBN: " . htmlspecialchars($book2->isbn ?? 'NOT IMPLEMENTED') . "</p>";
             echo "<p>Description: " . htmlspecialchars($book2->description ?? 'NOT IMPLEMENTED') . "</p>";
             echo "<p>Cover Filename: " . htmlspecialchars($book2->cover_filename ?? 'NOT IMPLEMENTED') . "</p>";
+            
             // Test 3: toArray
             echo "<h4>Test 3: toArray()</h4>";
             $array = $book2->toArray();
