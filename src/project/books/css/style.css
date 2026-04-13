@@ -3,7 +3,7 @@ body {
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.5em;
-	background-color: #fff;
+	background-color: #fff3f6;
 }
 
 .cards {
@@ -13,7 +13,7 @@ body {
 }
 
 .card {
-	background-color: #f4f4f4;
+	background-color: #fffcf9;
 	padding: 16px;
 	border-radius: 7px;
 	border: 1px solid #bcbcbc;
@@ -28,8 +28,8 @@ body {
 	line-height: 32px;
 	font-family: "IBM Plex Serif";
 	margin-bottom: 12px;
-	font-weight: 300;
-	color: #016040;
+	font-weight: 500;
+	color: #503c32;
 }
 
 .card p {
@@ -44,7 +44,7 @@ body {
 
 .card .actions a {
 	font-weight: 600;
-	color: #b0acfa;
+	color: #503c32;
 	font-size: 13px;
 	text-transform: uppercase;
 }
@@ -57,12 +57,12 @@ body {
 	width: 100%;
 	margin-bottom: 10px;
 	object-fit: cover;
-	border: 1px solid #7c75f1;
+	border: 1px solid #503c32;
 	height: 340px;
 }
 
 .filters {
-	background-color: #f2f2f2;
+	background-color: #ffe6ec;
 	padding: 10px;
 	display: flex;
 	justify-content: flex-end;
@@ -93,10 +93,10 @@ body {
 
 .filters form button {
 	font-size: 13px;
-	background-color: #084108;
+	background-color: #503c32;
 	padding: 5px 10px;
 	color: #ececec;
-	border: 1px solid #4bff3c;
+	border: 1px solid #ba9e8f;
 	border-radius: 5px;
 }
 
@@ -108,10 +108,10 @@ body {
 
 .button {
 	font-size: 13px;
-	background-color: #123991;
+	background-color: #503c32;
 	padding: 5px 10px;
 	color: #ececec;
-	border: 1px solid #4bff3c;
+	border: 1px solid #ba9e8f;
 	border-radius: 5px;
 }
 
@@ -133,7 +133,7 @@ body {
 	font-family: "IBM Plex Serif";
 	margin-bottom: 12px;
 	font-weight: 300;
-	color: #016040;
+	color: #503c32;
 }
 
 .hCard p {
